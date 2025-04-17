@@ -1,10 +1,9 @@
-from django.conf.urls import url
 from django.contrib import admin
-
+from django.urls import path
 from property import views
 
 urlpatterns = [
-    url(r'^$', views.show_flats),
-    url(r'^search/$', views.show_flats),
-    url(r'^admin/', admin.site.urls),
+    path('', views.show_flats),
+    path('search/', views.show_flats),
+    path('admin/', admin.site.urls),
 ]
