@@ -60,3 +60,10 @@ class Report(models.Model):
     reporter = models.ForeignKey(User, verbose_name='Кто жаловался', on_delete=models.CASCADE)
     reported_flat = models.ForeignKey(Flat, verbose_name='Кваритра, на которую пожаловались', on_delete=models.CASCADE)
     report_text = models.TextField(blank=True, verbose_name='Описание')
+
+
+class Owner(models.Model):
+    owners_name = models.CharField('ФИО владельца', max_length=200)
+    owners_phonenumber = models.CharField('Номер владельца', max_length=20)
+    owner_pure_number = PhoneNumberField(verbose_name='Нормализованный номер телефона', blank=True)
+    owners_flats = models.ManyToManyField(Flat, verbose_name='Квартиры в собственности', blank=True, related_name='owners_flats')
