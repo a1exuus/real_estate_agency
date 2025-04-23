@@ -9,6 +9,7 @@ def add_users(apps, schema_editor):
         owner, _ = Owner.objects.get_or_create(
             owners_name=flat.owner,
             owners_phonenumber=flat.owners_phonenumber,
+            owner_pure_number=flat.owner_pure_number,
         )
         owner.owners_flats.add(flat)
 
