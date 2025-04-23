@@ -4,7 +4,7 @@ import phonenumbers
 
 def normalize_phone_numbers(apps, schema_editor):
     Flat = apps.get_model('property', 'Flat')
-    flats = Flat.objects.filter(owners_phonenumber='+70000000000')
+    flats = Flat.objects.all()
 
     for flat in flats:
         try:
