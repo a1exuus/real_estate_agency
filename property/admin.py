@@ -3,8 +3,17 @@ from django.contrib import admin
 from .models import Flat, Report, Owner
 
 
+class FlatInline(admin.TabularInline):
+    model = Flat.owned_by.through
+    raw_id_fields = ('owner', 'flat')
+
+
 @admin.register(Flat)
 class FlatAdmin(admin.ModelAdmin):
+    inlines = [
+        FlatInline,
+    ]
+    exclude = ['owned_by']
     search_fields = ['town', 'address', 'owner']
     readonly_fields = ['created_at']
     list_display = ['address', 'price', 'construction_year', 'new_building', 'town']
