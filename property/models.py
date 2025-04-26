@@ -46,7 +46,11 @@ class Flat(models.Model):
         null=True,
         blank=True,
         db_index=True)
-    liked_by = models.ManyToManyField(User, verbose_name='Кто лайкнул', blank=True)
+    liked_by = models.ManyToManyField(
+        User,
+        verbose_name='Кто лайкнул',
+        blank=True,
+        related_name='liked_by')
     new_building = models.BooleanField(null=True, db_index=True)
 
     def __str__(self):
@@ -57,11 +61,13 @@ class Report(models.Model):
     reporter = models.ForeignKey(
         User,
         verbose_name='Кто жаловался',
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE,
+        related_name='reporter')
     reported_flat = models.ForeignKey(
         Flat,
         verbose_name='Кваритра, на которую пожаловались',
-        on_delete=models.CASCADE)
+        on_delete=models.CASCADE,
+        related_name='reported_flat')
     report_text = models.TextField(blank=True, verbose_name='Описание')
 
     def __str__(self):
