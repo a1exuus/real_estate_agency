@@ -88,7 +88,8 @@ class Owner(models.Model):
         Flat,
         verbose_name='Квартиры в собственности',
         related_name='owned_by',
-        db_index=True)
+        db_index=True,
+        blank=True)
 
     def __str__(self):
         return f'{self.owners_name}'
