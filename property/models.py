@@ -62,12 +62,12 @@ class Report(models.Model):
         User,
         verbose_name='Кто жаловался',
         on_delete=models.CASCADE,
-        related_name='reporter')
+        related_name='user')
     reported_flat = models.ForeignKey(
         Flat,
         verbose_name='Кваритра, на которую пожаловались',
         on_delete=models.CASCADE,
-        related_name='reported_flat')
+        related_name='flat')
     report_text = models.TextField(blank=True, verbose_name='Описание')
 
     def __str__(self):
